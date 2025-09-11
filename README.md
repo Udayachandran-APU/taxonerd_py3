@@ -2,11 +2,13 @@
 
 Looking for taxon mentions in text? Ask TaxoNERD
 
+* [Fixes applied to original](#fixes-applied-to-original-to-make-the-fork-work)
 * [Features](#features)
 * [Models](#models)
 * [Installation](#installation)
 * [Usage](#usage)
 * [Extensions](#extensions)
+
 
 I would be happy to hear about your use of TaxoNERD : what is your use case? How did TaxoNERD help you? What could make TaxoNERD even more helpful? Please feel free to drop me an email (nicolas[dot]leguillarme[at]univ-grenoble-alpes[dot]fr) or to open an issue.
 
@@ -14,6 +16,15 @@ I would be happy to hear about your use of TaxoNERD : what is your use case? How
 
 Le Guillarme, N., & Thuiller, W. (2022). [TaxoNERD: deep neural models for the recognition of taxonomic entities in the ecological and evolutionary literature](https://doi.org/10.1111/2041-210X.13778). Methods in Ecology and Evolution, 13(3), 625-641.
 
+## Fixes applied to original to make the fork work
+
+Taxonerd has a few issues with dependencies:
+- [textract](https://github.com/deanmalmgren/textract) issues, so change it to [textract-py3](https://github.com/KyleKing/textract-py3) which solves it somewhat
+- [Scispacy](https://github.com/allenai/scispacy) usses [nmslib](https://github.com/nmslib/nmslib) which [doesn't support python version 3.9+](https://github.com/allenai/scispacy?tab=readme-ov-file#installation-note-nmslib) properly and is annoying to use. This issue can be bypassed by either:
+    - Using [nmslib-metabrainz](https://github.com/metabrainz/nmslib-metabrainz) which supports until python 3.12. (Note: to force the isue of nmslib-metabrainz use python version >= 3.11 as that [forces scispacy to use it](https://github.com/allenai/scispacy/blob/249c805140553f2e18be520cbebf490cb8417ed8/requirements.in#L14)
+    - Using [prebuilt\precompiled wheel files](https://pypi.org/project/nmslib/2.1.1/#files) (I have no idea how this works)
+
+I have only tested using python 3.12.11 in a conda virtual env on windows 10 which forces the use of nmslib-metabrainz.
 ## Features
 
 TaxoNERD is a domain-specific tool for recognizing taxon mentions in the biodiversity literature.
