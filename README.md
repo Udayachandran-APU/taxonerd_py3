@@ -23,6 +23,7 @@ Taxonerd has a few issues with dependencies:
 - [Scispacy](https://github.com/allenai/scispacy) usses [nmslib](https://github.com/nmslib/nmslib) which [doesn't support python version 3.9+](https://github.com/allenai/scispacy?tab=readme-ov-file#installation-note-nmslib) properly and is annoying to use. This issue can be bypassed by either:
     - Using [nmslib-metabrainz](https://github.com/metabrainz/nmslib-metabrainz) which supports until python 3.12. (Note: to force the isue of nmslib-metabrainz use python version >= 3.11 as that [forces scispacy to use it](https://github.com/allenai/scispacy/blob/249c805140553f2e18be520cbebf490cb8417ed8/requirements.in#L14)
     - Using [prebuilt\precompiled wheel files](https://pypi.org/project/nmslib/2.1.1/#files) (I have no idea how this works)
+- [Spacy](https://github.com/explosion/spaCy) version >3.7.5 usses numpy version > 2.0 which [conflicts with Scispacy](https://github.com/allenai/scispacy/issues/536) To fix this, both older versions of spaCy are enforced and numpy versions < 2 are enforced.
 
 I have only tested using python 3.12.11 in a conda virtual env on windows 10 which forces the use of nmslib-metabrainz.
 ## Features
